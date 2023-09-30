@@ -1,0 +1,27 @@
+﻿@page
+@model ShoppingCartApplication.Pages.itemModel
+@{
+}
+<div class="text-center">
+    <div class="mainText">
+        <h1 class="display-4 text-black text-capitalize">Welcome to Shopping Cart</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var cartt in Model.cartDB)
+            {
+                var photoPath = "~/images/cartApp/" + (cartt.ImageTitle + ".png");
+
+                <div class="col-4 mb-5">
+                    <a class="pizza-img" asp-area="" asp-route-Name="@cartt.Name" asp-route-ImageTitle="@cartt.ImageTitle" asp-route-Price="@cartt.Price">
+                        <img src="@photoPath" class="w-100" asp-append-version="true" />
+                        <p>@cartt.Name</p>
+                        <p>Price : @cartt.Price</p>
+                        <button class="btn-primary" onclick="">Add To Cart</button>
+                    </a>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+</div>"
