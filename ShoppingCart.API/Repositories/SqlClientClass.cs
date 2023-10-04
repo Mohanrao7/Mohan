@@ -75,6 +75,15 @@ namespace ShoppingCart.API.Repositories
             return Cust;
         }
 
+        public async Task<string> GetPasswordByUserNameAsync(string userName)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@InputUsername", userName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@OutputPassword", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+            await _connection.ExecuteAsync("GetPasswordByUsername", parameters, commandType: CommandType.StoredProcedure);
+            string password = parameters.Get<string>("@OutputPassword");
+            return password;
+        }
 
         // Product Method Implementations
         public async Task<Product> GetProductByIdAsync(int id)

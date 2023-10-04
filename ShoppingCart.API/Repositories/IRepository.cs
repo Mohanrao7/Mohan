@@ -11,6 +11,7 @@ namespace ShoppingCart.API.Repositories
         Task<Customer> AddCustomer(CustomerDTO customer);
         Task<Customer> DeleteCustomerAsync(int id);
         Task<Customer> UpdateCustomerAsync(int id, CustomerDTO customer);
+        Task<string> GetPasswordByUserNameAsync(string userName);
 
         // Product Methods
         Task<List<Product>> GetProductsAsync();

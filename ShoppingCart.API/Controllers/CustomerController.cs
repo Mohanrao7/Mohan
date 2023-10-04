@@ -67,5 +67,19 @@ namespace ShoppingCart.API.Controllers
             }
             return NotFound($"Customer with ID = {id} not found");
         }
+
+        [HttpGet]
+        [Route("Validate")]
+        public async Task<IActionResult> GetPasswordByUserName([FromQuery] string username)
+        {
+            var password = await repository.GetPasswordByUserNameAsync(username);
+            
+            if (password != null)
+            {
+                var validateDTO = new ValidateDTO { UserName = username, password = password };
+                return Ok(validateDTO);
+            }
+            return BadRequest("Invalid Credentials");
+        }
     }
 }
