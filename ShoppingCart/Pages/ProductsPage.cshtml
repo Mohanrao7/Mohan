@@ -3,9 +3,14 @@
 
 @{
 }
-
-<h1>Products</h1>
-<button class="btn btn-secondary" asp-page="Cart">Cart</button>
+<div class="row">
+    <div class="col-md-9">
+        <h1>Products</h1>
+    </div>
+    <div class="col-md-3 text-right">
+        <a href="Cart" class="btn btn-secondary">Cart</a>
+    </div>
+</div>
 <div class="row">
     @foreach (var product in Model.ProductItems)
     {
@@ -17,9 +22,10 @@
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">@product.Description</p>
                     <p class="card-text">Price: $@product.Price</p>
-                    <button class="btn btn-primary">Add to Cart</button> 
+                    <button class="btn btn-primary">Add to Cart</button>
                 </div>
             </div>
         </div>
     }
 </div>
+
