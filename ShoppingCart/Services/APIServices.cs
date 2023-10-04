@@ -28,6 +28,18 @@ namespace ShoppingCart.Services
                 return null;
         }
 
+        public async Task<List<Cart>> GetAllCart()
+        {
+            var httpClient = httpClientFactory.CreateClient("WebAPI");
+            var response = await httpClient.GetAsync("api/Cart");
+            if (response.IsSuccessStatusCode)
+            {
+                var cartList = await response.Content.ReadFromJsonAsync<List<Cart>>();
+                return cartList;
+            }
+            else
+                return null;
+        }
 
     }
 }
