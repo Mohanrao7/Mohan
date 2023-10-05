@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ShoppingCart.Models;
+using ShoppingCart.Services;
 
 namespace ShoppingCart.Pages
 {
@@ -14,7 +16,7 @@ namespace ShoppingCart.Pages
 
         public void OnGet()
         {
-
+           
         }
     }
 }

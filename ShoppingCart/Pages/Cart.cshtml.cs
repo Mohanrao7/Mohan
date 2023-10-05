@@ -16,7 +16,7 @@ namespace ShoppingCart.Pages
         }
         public async Task OnGet()
         {
-            CartItems = await apiService.GetAllCart();
+          CartItems = await apiService.GetAllCart();
         }
  
     }

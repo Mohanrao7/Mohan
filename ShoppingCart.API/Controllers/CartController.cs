@@ -24,10 +24,10 @@ namespace ShoppingCart.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetCartItemByID([FromRoute] int id)
+        [Route("UserID/{id}")]
+        public async Task<IActionResult> GetCartItemByUserID([FromRoute] int id)
         {
-            var cartItem = await repository.GetCartByIdAsync(id);
+            var cartItem = await repository.GetCartByUserIdAsync(id);
             if (cartItem == null)
             {
                 return NotFound($"Cart item with ID = {id} not found");

@@ -2,6 +2,8 @@
 using System.Data;
 using Dapper;
 using ShoppingCart.API.Models.DTO;
+using System.Data.Common;
+using System.Data.SqlTypes;
 
 namespace ShoppingCart.API.Repositories
 {
@@ -218,16 +220,16 @@ namespace ShoppingCart.API.Repositories
             return carts.ToList();
         }
 
-        public async Task<Cart> GetCartByUserIdAsync(int id)
+        public async Task<List<CartItemsDTO>> GetCartByUserIdAsync(int id)
         {
             var param = new DynamicParameters();
             param.Add("@UserID", id, DbType.Int32);
-            var cart = await _connection.QueryFirstOrDefaultAsync<Cart>(
-                "GetCartItemsByUserId",
+            var cart = await _connection.QueryAsync<CartItemsDTO>(
+                "GetCartProductsByUserID",
                 param,
                 commandType: CommandType.StoredProcedure
             );
-            return cart;
+            return cart.ToList();
         }
 
         public async Task<Cart> GetCartByIdAsync(int id)
@@ -363,5 +365,6 @@ namespace ShoppingCart.API.Repositories
             await _connection.ExecuteAsync("DeleteOrder", param, commandType: CommandType.StoredProcedure);
             return order;
         }
+
     }
 }
